@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>你和手機的距離｜手機成癮指數測驗</title>
+<meta name="description" content="七個日常情境，測的不是你一天用幾小時，而是手機在你生活裡站在什麼位置。均一教育平台・數位生活必修課。">
+<meta name="theme-color" content="#EAEBEF">
+
+<!-- 社群分享預覽（貼到 FB／LINE／Threads 時顯示的卡片） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="你和手機的距離｜手機成癮指數測驗">
+<meta property="og:description" content="七題日常情境，測出手機在你生活裡站在什麼位置。">
+<meta property="og:site_name" content="均一教育平台">
+<meta property="og:locale" content="zh_TW">
+<!-- 上線前請把下面兩行換成正式網址與預覽圖（建議 1200×630）-->
+<meta property="og:url" content="https://REPLACE-WITH-YOUR-DOMAIN/quiz/">
+<meta property="og:image" content="https://REPLACE-WITH-YOUR-DOMAIN/quiz/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap">
+
+<style>
+  html{color-scheme:light dark}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none !important}
+
+  :root{
+    --paper:#EAEBEF;
+    --surface:#FFFFFF;
+    --surface-2:#F3F4F7;
+    --ink:#16191F;
+    --ink-soft:#454C58;
+    --muted:#767E8C;
+    --line:#D7D9E0;
+    --line-soft:#E5E7EC;
+    --glow:#3F6FB5;
+    --amber:#C97A16;
+    --t1:#2E7D6C;
+    --t2:#B08A1B;
+    --t3:#C4632A;
+    --t4:#A63A34;
+    --focus:#3F6FB5;
+    --shadow:0 1px 2px rgba(22,25,31,.05), 0 12px 32px -18px rgba(22,25,31,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#111318;
+      --surface:#181B22;
+      --surface-2:#1F232B;
+      --ink:#EDEEF2;
+      --ink-soft:#C3C7D0;
+      --muted:#8A91A0;
+      --line:#2C313B;
+      --line-soft:#242932;
+      --glow:#7FA6E0;
+      --amber:#E0A648;
+      --t1:#5CB39F;
+      --t2:#D6B44A;
+      --t3:#E08A4E;
+      --t4:#D96A62;
+      --focus:#7FA6E0;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#111318;
+    --surface:#181B22;
+    --surface-2:#1F232B;
+    --ink:#EDEEF2;
+    --ink-soft:#C3C7D0;
+    --muted:#8A91A0;
+    --line:#2C313B;
+    --line-soft:#242932;
+    --glow:#7FA6E0;
+    --amber:#E0A648;
+    --t1:#5CB39F;
+    --t2:#D6B44A;
+    --t3:#E08A4E;
+    --t4:#D96A62;
+    --focus:#7FA6E0;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -20px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:40px 20px 72px;
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+  }
+
+  /* ---------- header ---------- */
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:.16em;
+    color:var(--muted);
+    margin:0;
+    font-weight:500;
+  }
+  h1{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:clamp(30px,7vw,42px);
+    line-height:1.25;
+    letter-spacing:.02em;
+    margin:6px 0 0;
+    text-wrap:balance;
+  }
+  .lede{
+    margin:10px 0 0;
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:34em;
+  }
+  .lede em{
+    font-style:normal;
+    color:var(--ink);
+    box-shadow:inset 0 -8px 0 -1px color-mix(in srgb, var(--amber) 26%, transparent);
+  }
+
+  /* ---------- progress ---------- */
+  .progress{
+    display:flex;
+    gap:5px;
+    align-items:center;
+  }
+  .seg{
+    height:3px;
+    flex:1;
+    border-radius:2px;
+    background:var(--line);
+    transition:background .35s ease;
+  }
+  .seg.done{background:var(--glow)}
+  .seg.now{background:color-mix(in srgb, var(--glow) 55%, var(--line))}
+  .counter{
+    font-size:12px;
+    color:var(--muted);
+    font-variant-numeric:tabular-nums;
+    letter-spacing:.06em;
+    white-space:nowrap;
+  }
+
+  /* ---------- question card ---------- */
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line-soft);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    padding:28px 24px 24px;
+  }
+  .qhead{
+    display:flex;
+    gap:12px;
+    align-items:baseline;
+    margin-bottom:18px;
+  }
+  .qnum{
+    font-family:"Noto Serif TC",serif;
+    font-size:13px;
+    color:var(--amber);
+    letter-spacing:.1em;
+    font-variant-numeric:tabular-nums;
+    flex:none;
+  }
+  .qtext{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:clamp(19px,4.4vw,23px);
+    line-height:1.6;
+    margin:0;
+    text-wrap:balance;
+  }
+  .qnote{
+    font-size:13px;
+    color:var(--muted);
+    margin:-8px 0 16px;
+    padding-left:calc(1.9em + 12px);
+    line-height:1.7;
+  }
+  .opts{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .opts.grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:9px;
+  }
+  .opt{
+    appearance:none;
+    text-align:left;
+    font:inherit;
+    font-size:15.5px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    background:var(--surface-2);
+    border:1px solid transparent;
+    border-radius:10px;
+    padding:13px 16px;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease, transform .12s ease;
+  }
+  .opts.grid .opt{
+    text-align:center;
+    font-variant-numeric:tabular-nums;
+    padding:13px 8px;
+  }
+  .opt:hover{
+    background:color-mix(in srgb, var(--glow) 9%, var(--surface-2));
+    color:var(--ink);
+    border-color:color-mix(in srgb, var(--glow) 32%, transparent);
+  }
+  .opt:active{transform:scale(.99)}
+  .opt.picked{
+    background:color-mix(in srgb, var(--glow) 14%, var(--surface-2));
+    border-color:var(--glow);
+    color:var(--ink);
+  }
+  .opt:focus-visible, .ghost:focus-visible, .cta:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:2px;
+  }
+  .foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    margin-top:18px;
+    min-height:22px;
+  }
+  .ghost{
+    appearance:none;
+    background:none;
+    border:0;
+    font:inherit;
+    font-size:13.5px;
+    color:var(--muted);
+    cursor:pointer;
+    padding:2px 0;
+    border-bottom:1px solid var(--line);
+    flex:none;
+  }
+  .ghost:hover{color:var(--ink)}
+  .hint{font-size:12.5px;color:var(--muted);text-align:right}
+
+  .fade{animation:rise .32s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+  /* ---------- result ---------- */
+  .index-line{
+    display:flex;
+    align-items:flex-end;
+    gap:12px;
+    margin-bottom:2px;
+  }
+  .index-num{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:clamp(52px,13vw,66px);
+    line-height:.92;
+    font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em;
+    color:var(--tier);
+  }
+  .index-label{
+    font-size:13px;
+    color:var(--muted);
+    padding-bottom:9px;
+    line-height:1.5;
+  }
+  .scale{margin:22px 0 24px}
+  .bars{display:flex;gap:3px;height:9px}
+  .bars span{flex:1;border-radius:2px;opacity:.28}
+  .bars span.on{opacity:1}
+  .marker{position:relative;height:18px;margin-top:5px}
+  .pin{
+    position:absolute;
+    transform:translateX(-50%);
+    font-size:11px;
+    color:var(--muted);
+    white-space:nowrap;
+    letter-spacing:.04em;
+  }
+  .tier-name{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:24px;
+    line-height:1.5;
+    margin:0 0 8px;
+    color:var(--tier);
+    text-wrap:balance;
+  }
+  .tier-body{margin:0;color:var(--ink-soft);font-size:15.5px}
+  .review{
+    margin-top:24px;
+    border-top:1px solid var(--line-soft);
+    padding-top:16px;
+  }
+  .review h3{
+    font-size:12px;
+    letter-spacing:.14em;
+    color:var(--muted);
+    font-weight:500;
+    margin:0 0 12px;
+  }
+  .review ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .review li{
+    display:grid;
+    grid-template-columns:7em 1fr;
+    gap:12px;
+    align-items:center;
+    font-size:13.5px;
+  }
+  .review .rq{color:var(--ink-soft)}
+  .review .rb{
+    height:6px;
+    border-radius:3px;
+    background:var(--surface-2);
+    overflow:hidden;
+  }
+  .review .rb i{
+    display:block;
+    height:100%;
+    border-radius:3px;
+    background:var(--tier);
+    opacity:.85;
+  }
+
+  .cta-card{
+    background:var(--surface);
+    border:1px solid var(--line-soft);
+    border-left:3px solid var(--amber);
+    border-radius:12px;
+    padding:22px 22px 20px;
+  }
+  .cta-card p{margin:0}
+  .cta-kicker{font-size:12px;letter-spacing:.14em;color:var(--amber);margin-bottom:8px !important}
+  .cta-title{
+    font-family:"Noto Serif TC",serif;
+    font-weight:700;
+    font-size:19px;
+    line-height:1.6;
+    margin-bottom:6px !important;
+  }
+  .cta-sub{font-size:14.5px;color:var(--ink-soft);margin-bottom:16px !important}
+  .cta{
+    display:inline-block;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    padding:11px 22px;
+    border-radius:8px;
+    transition:opacity .15s ease;
+  }
+  .cta:hover{opacity:.85}
+
+  .share{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .share button{
+    appearance:none;
+    font:inherit;
+    font-size:14px;
+    background:var(--surface);
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:9px 16px;
+    cursor:pointer;
+    transition:border-color .15s ease,color .15s ease;
+  }
+  .share button:hover{border-color:var(--glow);color:var(--ink)}
+  .share button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .share button.primary{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+    font-weight:500;
+  }
+  .share button.primary:hover{opacity:.85;color:var(--paper)}
+  .share button[disabled]{opacity:.55;cursor:progress}
+  .said{font-size:13px;color:var(--t1)}
+
+  .shot-box{
+    margin:18px 0 0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    align-items:center;
+  }
+  .shot-box img{
+    display:block;
+    width:100%;
+    max-width:290px;
+    border-radius:12px;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+  }
+  .shot-box figcaption{
+    font-size:12.5px;
+    color:var(--muted);
+    text-align:center;
+    line-height:1.7;
+  }
+
+  .colophon{
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.8;
+    border-top:1px solid var(--line-soft);
+    padding-top:16px;
+    margin:0;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">均一教育平台・數位生活必修課</p>
+    <h1>你和手機的距離</h1>
+    <p class="lede">七個日常情境，測的不是你一天用幾小時，而是<em>手機在你生活裡站在什麼位置</em>。憑直覺選，最接近的那個就好。</p>
+  </header>
+
+  <div class="progress">
+    <span class="counter" id="counter">1 / 7</span>
+    <span class="seg now"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+  </div>
+
+  <main>
+    <section class="card" id="quiz" aria-live="polite">
+      <div class="qhead">
+        <span class="qnum" id="qnum">Q1</span>
+        <h2 class="qtext" id="qtext">早上鬧鐘響，你起床的第一件事是⋯</h2>
+      </div>
+      <p class="qnote" id="qnote" hidden></p>
+      <div class="opts" id="opts"></div>
+      <div class="foot">
+        <button class="ghost" id="back" hidden>← 上一題</button>
+        <span class="hint" id="hint">選一個最接近的</span>
+      </div>
+    </section>
+
+    <section id="result" hidden></section>
+  </main>
+
+  <p class="colophon">本測驗僅供自我覺察，不是醫療或心理診斷工具。<br>製作｜均一平台教育基金會</p>
+</div>
+
+<script>
+const LINK = "https://link.junyiacademy.org/9lqj6w";
+const LINK_TEXT = "link.junyiacademy.org/9lqj6w";
+
+/* 每題選項寫成 [文字, 分數]，畫面上會隨機排序，分數跟著選項走 */
+const QUESTIONS = [
+  { tag:"起床", q:"早上鬧鐘響，你起床的第一件事是⋯", a:[
+    ["先去洗臉、弄早餐，手機晚點再說", 0],
+    ["關掉鬧鐘就放下，出門前才看手機", 1],
+    ["關掉鬧鐘順手看一下通知，看完才真的起床", 2],
+    ["人還沒清醒手已經在滑了，一滑就快遲到", 3]
+  ]},
+  { tag:"睡前", q:"晚上睡覺前，你會⋯", a:[
+    ["手機放客廳／充電區，不帶進房", 0],
+    ["設好鬧鐘就放下手機，翻兩下就睡", 1],
+    ["說好只看一下手機，結果看了半小時", 2],
+    ["滑到不小心睡著", 3]
+  ]},
+  { tag:"聊天中", q:"跟別人聊天的時候，桌上的手機震了一下，你會⋯", a:[
+    ["完全沒去看，講完再說", 0],
+    ["眼睛掃過去一眼，繼續講", 1],
+    ["「等一下喔」，翻過來確認", 2],
+    ["直接拿起來看", 3]
+  ]},
+  { tag:"喘口氣", q:"忙完一件很煩的事，你終於能坐下來，你會⋯", a:[
+    ["發呆、喝水，什麼都不做", 0],
+    ["找人講話，或起來走一走", 1],
+    ["拿手機，本來想放鬆，滑完更累", 2],
+    ["手已經在滑了，沒有想過要做什麼", 3]
+  ]},
+  { tag:"忘了帶", q:"準備出門去外縣市一日遊，走到一半發現手機忘在家裡，你會⋯", a:[
+    ["算了，一天不看手機也不會怎樣", 0],
+    ["有點怪，但還是繼續走", 1],
+    ["心裡一直卡著，想著會不會有事找我", 2],
+    ["掉頭回去拿，一定要拿", 3]
+  ]},
+  { tag:"空白三分鐘", q:"等紅燈、排隊、等捷運的那三分鐘，你會⋯", a:[
+    ["看看四周，或什麼都不想", 0],
+    ["偶爾看一下手機，多半沒拿", 1],
+    ["幾乎一定會拿出來滑", 2],
+    ["手機已經在手上，是什麼時候拿的不知道", 3]
+  ]},
+  { tag:"實際時數", q:"最後，打開你手機的螢幕使用時間 —— 過去七天，每日平均是⋯",
+    note:"iPhone：設定 → 螢幕使用時間　｜　Android：設定 → 數位健康與家長監護",
+    layout:"grid", fixed:true, a:[
+    ["2 小時以下", 0],
+    ["2–3 小時", 1],
+    ["3–4 小時", 2],
+    ["4–5 小時", 3],
+    ["5–6 小時", 4],
+    ["6–8 小時", 5],
+    ["8 小時以上", 6]
+  ]}
+];
+
+const MAX = QUESTIONS.reduce((sum, item) => sum + Math.max(...item.a.map(o => o[1])), 0); // 24
+
+const TIERS = [
+  { upTo:25,  name:"你還記得怎麼發呆",   body:"你和手機之間還留著距離。在一個所有人都用滑動填滿空白的年代，這件事比你以為的珍貴。",   color:"var(--t1)", hex:"#5CB39F",
+    shareBody:"你和手機之間還留著距離。在一個所有人都用滑動填滿空白的年代，這件事比你以為的珍貴。" },
+  { upTo:50,  name:"你跟大部分的人一樣", body:"沒有失控，但手機已經變成你的預設動作——不是你決定要拿，是手先動了。",                 color:"var(--t2)", hex:"#D6B44A",
+    shareBody:"沒有失控，但手機已經變成預設動作——不是我決定要拿，是手先動了。" },
+  { upTo:75,  name:"手機在替你處理情緒", body:"問題不是時間長短，是煩的時候、累的時候、無聊的時候，接手的都是它。那些情緒沒有被處理，只是被蓋住。", color:"var(--t3)", hex:"#E08A4E",
+    shareBody:"問題不是時間長短，是煩的時候、累的時候、無聊的時候，接手的都是它。" },
+  { upTo:100, name:"這篇是為你寫的",     body:"如果連你自己都做不到，那孩子做不到，就不是自制力的問題。沉迷從來不是意志力不夠，是生活裡沒有別的東西可以接住那段空白。", color:"var(--t4)", hex:"#D96A62",
+    shareBody:"沉迷從來不是意志力不夠，是生活裡沒有別的東西，可以接住那段空白。" }
+];
+
+const opts = document.getElementById('opts');
+const qtext = document.getElementById('qtext');
+const qnum = document.getElementById('qnum');
+const qnote = document.getElementById('qnote');
+const counter = document.getElementById('counter');
+const back = document.getElementById('back');
+const hint = document.getElementById('hint');
+const quiz = document.getElementById('quiz');
+const result = document.getElementById('result');
+const segs = [...document.querySelectorAll('.seg')];
+
+let i = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+let orders = [];
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let n = a.length - 1; n > 0; n--){
+    const m = Math.floor(Math.random() * (n + 1));
+    [a[n], a[m]] = [a[m], a[n]];
+  }
+  return a;
+}
+
+/* 情境題打散選項順序；時數題保持由少到多，打散反而難讀 */
+function buildOrders(){
+  orders = QUESTIONS.map(item => item.fixed ? item.a.slice() : shuffle(item.a));
+}
+
+function paintProgress(){
+  segs.forEach((s, n) => {
+    s.className = 'seg' + (answers[n] !== null ? ' done' : (n === i ? ' now' : ''));
+  });
+  counter.textContent = (i + 1) + " / " + QUESTIONS.length;
+}
+
+function render(){
+  const item = QUESTIONS[i];
+  qnum.textContent = "Q" + (i + 1);
+  qtext.textContent = item.q;
+  if (item.note){ qnote.textContent = item.note; qnote.hidden = false; }
+  else { qnote.hidden = true; }
+
+  opts.className = 'opts' + (item.layout === 'grid' ? ' grid' : '');
+  opts.innerHTML = '';
+  orders[i].forEach(([text, score]) => {
+    const b = document.createElement('button');
+    b.className = 'opt' + (answers[i] === score ? ' picked' : '');
+    b.type = 'button';
+    b.textContent = text;
+    b.addEventListener('click', () => choose(score, b));
+    opts.appendChild(b);
+  });
+
+  back.hidden = i === 0;
+  hint.textContent = answers[i] !== null ? "可以改，或往下一題" : "選一個最接近的";
+  quiz.classList.remove('fade');
+  void quiz.offsetWidth;
+  quiz.classList.add('fade');
+  paintProgress();
+}
+
+function choose(score, el){
+  answers[i] = score;
+  [...opts.children].forEach(c => c.classList.toggle('picked', c === el));
+  paintProgress();
+  setTimeout(() => {
+    if (i < QUESTIONS.length - 1){ i++; render(); }
+    else finish();
+  }, 260);
+}
+
+back.addEventListener('click', () => { if (i > 0){ i--; render(); } });
+
+function finish(){
+  const raw = answers.reduce((a, b) => a + b, 0);
+  const pct = Math.round((raw / MAX) * 100);
+  const tier = TIERS.find(t => pct <= t.upTo);
+
+  const bars = TIERS.map(t =>
+    `<span class="${t === tier ? 'on' : ''}" style="background:${t.color}"></span>`
+  ).join('');
+
+  const rows = QUESTIONS.map((item, n) => {
+    const max = Math.max(...item.a.map(o => o[1]));
+    const w = Math.round((answers[n] / max) * 100);
+    return `<li><span class="rq">${item.tag}</span><span class="rb"><i style="width:${w}%"></i></span></li>`;
+  }).join('');
+
+  result.innerHTML = `
+    <div class="card cta-card fade">
+      <p class="cta-kicker">均一教育平台・數位生活必修課</p>
+      <p class="cta-title">沉迷不是自制力的問題。</p>
+      <p class="cta-sub">諮商心理師陳志恆用 3 分 46 秒，說明可以怎麼做。<br>數位素養養成第三課・數位人際力｜免費觀看</p>
+      <a class="cta" href="${LINK}" target="_blank" rel="noopener">前往均一教育平台觀看</a>
+    </div>
+
+    <div class="card fade" style="--tier:${tier.color};margin-top:20px">
+      <div class="index-line">
+        <span class="index-num">${pct}%</span>
+        <span class="index-label">你的<br>手機成癮指數</span>
+      </div>
+      <div class="scale">
+        <div class="bars">${bars}</div>
+        <div class="marker"><span class="pin" style="left:clamp(5%, ${pct}%, 95%)">▲ 你在這裡</span></div>
+      </div>
+      <h2 class="tier-name">${tier.name}</h2>
+      <p class="tier-body">${tier.body}</p>
+      <div class="review">
+        <h3>哪幾個時刻最黏</h3>
+        <ul>${rows}</ul>
+      </div>
+    </div>
+
+    <div class="share" style="margin-top:20px">
+      <button type="button" id="shot" class="primary">產生分享圖片</button>
+      <button type="button" id="copy">複製文字</button>
+      <button type="button" id="again">重測一次</button>
+      <span class="said" id="said" hidden></span>
+    </div>
+
+    <figure class="shot-box" id="shotBox" hidden>
+      <img id="shotImg" alt="你的測驗結果分享圖">
+      <figcaption id="shotCap">長按圖片儲存，就能貼到限時動態</figcaption>
+    </figure>
+  `;
+  result.hidden = false;
+  quiz.hidden = true;
+  segs.forEach(s => s.className = 'seg done');
+  counter.textContent = QUESTIONS.length + " / " + QUESTIONS.length;
+
+  document.getElementById('again').addEventListener('click', () => {
+    answers = new Array(QUESTIONS.length).fill(null);
+    buildOrders();
+    i = 0;
+    result.hidden = true;
+    result.innerHTML = '';
+    quiz.hidden = false;
+    render();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  document.getElementById('shot').addEventListener('click', async (ev) => {
+    const btn = ev.currentTarget;
+    const said = document.getElementById('said');
+    btn.disabled = true;
+    btn.textContent = "製作中⋯";
+    try {
+      const blob = await buildShareCard(pct, tier);
+      const box = document.getElementById('shotBox');
+      const img = document.getElementById('shotImg');
+      const cap = document.getElementById('shotCap');
+      img.src = URL.createObjectURL(blob);
+      box.hidden = false;
+
+      const file = new File([blob], "手機成癮指數.png", { type:"image/png" });
+      if (navigator.canShare && navigator.canShare({ files:[file] })) {
+        cap.textContent = "長按圖片可儲存，或按下方直接分享";
+        btn.textContent = "分享到⋯";
+        btn.disabled = false;
+        btn.onclick = () => navigator.share({
+          files:[file],
+          text:`我的手機成癮指數 ${pct}%——${tier.name}。你呢？\n沉迷不是自制力的問題｜3 分 46 秒免費看 ${LINK}`
+        }).catch(() => {});
+      } else {
+        cap.textContent = "長按（電腦按右鍵）儲存圖片，就能貼到限時動態";
+        btn.textContent = "複製圖片";
+        btn.disabled = false;
+        btn.onclick = async () => {
+          try {
+            await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+            said.textContent = "圖片已複製";
+          } catch (e) {
+            said.textContent = "請長按上方圖片儲存";
+          }
+          said.hidden = false;
+          setTimeout(() => { said.hidden = true; }, 2400);
+        };
+      }
+      box.scrollIntoView({ behavior:"smooth", block:"nearest" });
+    } catch (e) {
+      btn.textContent = "產生分享圖片";
+      btn.disabled = false;
+      said.textContent = "圖片產生失敗，請再按一次";
+      said.hidden = false;
+      setTimeout(() => { said.hidden = true; }, 2400);
+    }
+  });
+
+  document.getElementById('copy').addEventListener('click', async () => {
+    const said = document.getElementById('said');
+    const text = `我的手機成癮指數 ${pct}%——${tier.name}。你呢？\n\n沉迷不是自制力的問題｜諮商心理師 陳志恆，3 分 46 秒免費看 ${LINK}`;
+    try {
+      await navigator.clipboard.writeText(text);
+      said.textContent = "已複製";
+      said.hidden = false;
+      setTimeout(() => { said.hidden = true; }, 2000);
+    } catch (e) {
+      said.textContent = "複製失敗，請長按選取指數";
+      said.hidden = false;
+    }
+  });
+
+  result.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+/* ---------- 分享圖片（IG 限動 9:16，1080×1920） ---------- */
+async function buildShareCard(pct, tier){
+  const W = 1080, H = 1920, PAD = 100;
+  const INNER = W - PAD * 2;
+
+  const SERIF = '"Noto Serif TC","PingFang TC",serif';
+  const SANS  = '"Noto Sans TC","PingFang TC",sans-serif';
+
+  if (document.fonts && document.fonts.load){
+    await Promise.all([
+      document.fonts.load('700 200px ' + SERIF, '0123456789%'),
+      document.fonts.load('700 70px ' + SERIF, tier.name + '你和手機的距離'),
+      document.fonts.load('400 38px ' + SANS, tier.shareBody + '均一教育平台數位生活必修課手機成癮指數你呢沉迷不是自制力的問題諮商心理師陳志恆分秒七題測出手機在你生活裡的位置')
+    ]).catch(() => {});
+    await document.fonts.ready.catch(() => {});
+  }
+
+  const cv = document.createElement('canvas');
+  cv.width = W; cv.height = H;
+  const g = cv.getContext('2d');
+
+  const BG = '#111318', INK = '#EDEEF2', SOFT = '#C3C7D0', MUTED = '#7C8493', LINE = '#282D36';
+
+  g.fillStyle = BG;
+  g.fillRect(0, 0, W, H);
+
+  /* 螢幕光暈：分數越高，光越亮 */
+  const glow = g.createRadialGradient(W / 2, 760, 40, W / 2, 760, 760);
+  glow.addColorStop(0, hexA(tier.hex, 0.10 + (pct / 100) * 0.14));
+  glow.addColorStop(1, hexA(tier.hex, 0));
+  g.fillStyle = glow;
+  g.fillRect(0, 0, W, H);
+
+  const line = (y) => { g.fillStyle = LINE; g.fillRect(PAD, y, INNER, 1); };
+
+  const text = (str, { font, color, y, x = PAD, spacing = '0px', align = 'left' }) => {
+    g.font = font; g.fillStyle = color; g.textAlign = align; g.textBaseline = 'alphabetic';
+    if ('letterSpacing' in g) g.letterSpacing = spacing;
+    g.fillText(str, x, y);
+    if ('letterSpacing' in g) g.letterSpacing = '0px';
+  };
+
+  /* 逐字斷行，中文不需要空白斷詞 */
+  const wrap = (str, font, maxW) => {
+    g.font = font;
+    const lines = [];
+    let cur = '';
+    for (const ch of str){
+      if (ch === '\n'){ lines.push(cur); cur = ''; continue; }
+      const next = cur + ch;
+      if (g.measureText(next).width > maxW && cur){ lines.push(cur); cur = ch; }
+      else { cur = next; }
+    }
+    if (cur) lines.push(cur);
+    return lines;
+  };
+
+  let y = 190;
+
+  text('均一教育平台・數位生活必修課', { font: '500 30px ' + SANS, color: MUTED, y, spacing: '5px' });
+  y += 82;
+  text('你和手機的距離', { font: '700 74px ' + SERIF, color: INK, y, spacing: '2px' });
+
+  /* 指數 */
+  y = 640;
+  g.textBaseline = 'alphabetic';
+  g.font = '700 250px ' + SERIF;
+  g.fillStyle = tier.hex;
+  g.textAlign = 'left';
+  const numStr = String(pct);
+  const numW = g.measureText(numStr).width;
+  g.fillText(numStr, PAD, y);
+  g.font = '700 96px ' + SERIF;
+  g.fillText('%', PAD + numW + 12, y);
+  text('我的手機成癮指數', { font: '400 34px ' + SANS, color: MUTED, y: y + 62, spacing: '3px' });
+
+  /* 四段刻度 */
+  y += 165;
+  const segW = (INNER - 12 * 3) / 4;
+  TIERS.forEach((t, n) => {
+    g.fillStyle = t.hex;
+    g.globalAlpha = (t === tier) ? 1 : 0.26;
+    roundRect(g, PAD + n * (segW + 12), y, segW, 16, 8);
+    g.fill();
+  });
+  g.globalAlpha = 1;
+  const pinX = PAD + Math.min(Math.max(pct / 100, 0.02), 0.98) * INNER;
+  g.fillStyle = tier.hex;
+  g.beginPath();
+  g.moveTo(pinX, y + 30);
+  g.lineTo(pinX - 13, y + 54);
+  g.lineTo(pinX + 13, y + 54);
+  g.closePath();
+  g.fill();
+
+  /* 結果 */
+  y += 155;
+  text(tier.name, { font: '700 66px ' + SERIF, color: tier.hex, y, spacing: '1px' });
+
+  y += 78;
+  const bodyFont = '400 38px ' + SANS;
+  wrap(tier.shareBody, bodyFont, INNER).forEach(ln => {
+    text(ln, { font: bodyFont, color: SOFT, y });
+    y += 66;
+  });
+
+  /* 收尾 */
+  y = H - 430;
+  line(y);
+  y += 90;
+  text('你呢？', { font: '700 54px ' + SERIF, color: INK, y });
+  y += 62;
+  const tailFont = '400 33px ' + SANS;
+  wrap('七題，測出手機在你生活裡的位置。\n沉迷不是自制力的問題｜諮商心理師 陳志恆．3 分 46 秒', tailFont, INNER).forEach(ln => {
+    text(ln, { font: tailFont, color: MUTED, y });
+    y += 54;
+  });
+  y += 18;
+  text(LINK_TEXT, { font: '500 34px ' + SANS, color: '#E0A648', y, spacing: '1px' });
+
+  return new Promise(res => cv.toBlob(b => res(b), 'image/png'));
+}
+
+function roundRect(g, x, y, w, h, r){
+  g.beginPath();
+  g.moveTo(x + r, y);
+  g.arcTo(x + w, y, x + w, y + h, r);
+  g.arcTo(x + w, y + h, x, y + h, r);
+  g.arcTo(x, y + h, x, y, r);
+  g.arcTo(x, y, x + w, y, r);
+  g.closePath();
+}
+
+function hexA(hex, a){
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+}
+
+buildOrders();
+render();
+</script>
+</body>
+</html>
